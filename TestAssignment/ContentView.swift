@@ -9,22 +9,37 @@ import SwiftUI
 
 struct ContentView: View {
     @State var q = ""
+    @State var currentMessage = "Enter search parameter"
     @StateObject private var viewModel = ArticleViewModel()
     
     var body: some View {
         NavigationStack{
             VStack {
-                TextField("Enter search parameter", text: $q)
-                Button("Search"){
-                    viewModel.fetchNews(query: q)
+                HStack {
+                    TextField(currentMessage, text: $q)
+                    Button("Search"){
+                        if !q.isEmpty {
+                            viewModel.fetchNews(query: q)
+                        } else {
+                            currentMessage = "ENTER THE SEARCH PARAMETER"
+                        }
+                    }
+                    .padding()
+                    .clipShape(Capsule())
+                    .background(.blue)
+                    .foregroundColor(.white)
                 }
+                .accessibilityLabel("Search for news")
                 List(viewModel.articles, id: \.title) { item in
-                    VStack {
-                        Text(item.title)
-                            .font(.headline)
-                        Text(item.author ?? "author unknown")
+                    NavigationLink(destination: Text(item.title)) {
+                        VStack {
+                            Text(item.title)
+                                .font(.headline)
+                            Text(item.author ?? "author unknown")
+                        }
                     }
                 }
+                .navigationTitle("NEWS")
             }
         }
         .padding()
