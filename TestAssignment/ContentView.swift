@@ -15,21 +15,7 @@ struct ContentView: View {
     var body: some View {
         NavigationStack{
             VStack {
-                HStack {
-                    TextField(currentMessage, text: $q)
-                    Button("Search"){
-                        if !q.isEmpty {
-                            viewModel.fetchNews(query: q)
-                        } else {
-                            currentMessage = "ENTER THE SEARCH PARAMETER"
-                        }
-                    }
-                    .padding()
-                    .clipShape(Capsule())
-                    .background(.blue)
-                    .foregroundColor(.white)
-                }
-                .accessibilityLabel("Search for news")
+                SearchbarView(currentMessage: $currentMessage, q: $q, viewModel: viewModel)
                 List(viewModel.articles, id: \.title) { item in
                     NavigationLink(destination: Text(item.title)) {
                         VStack {
