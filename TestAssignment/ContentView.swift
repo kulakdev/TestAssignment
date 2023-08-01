@@ -17,12 +17,13 @@ struct ContentView: View {
             VStack {
                 SearchbarView(currentMessage: $currentMessage, q: $q, viewModel: viewModel)
                 List(viewModel.articles, id: \.title) { item in
-                    NavigationLink(destination: Text(item.title)) {
+                    NavigationLink(destination: DetailView(item: item)) {
                         VStack {
                             Text(item.title)
                                 .font(.headline)
                             Text(item.author ?? "author unknown")
                         }
+                        
                     }
                 }
                 .navigationTitle("NEWS")
