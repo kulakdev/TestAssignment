@@ -8,8 +8,43 @@
 import SwiftUI
 
 struct IncludeExcludeView: View {
+    @State var sheetVisibility = false
+    @ObservedObject var viewModel: ArticleViewModel
+    
     var body: some View{
-        Text("Include / Exclude")
+        Button("Include / Exclude"){
+            sheetVisibility.toggle()
+        }
+        .sheet(isPresented: $sheetVisibility){
+            print("Sheet is closed")
+        } content : {
+            HStack{
+                Spacer()
+                Button(){
+                    sheetVisibility.toggle()
+                } label: {
+                    Image(systemName: "xmark.circle.fill")
+                        .font(.system(size: 40))
+                        .padding(.trailing)
+                }
+            }
+            VStack{
+                VStack{
+                    Text("Tags to exclude:")
+                        .padding(.trailing)
+                    TextField("Enter topics to exclude", text: $viewModel.excludedTopics )
+                        .border(.red)
+                }
+                VStack{
+                    Text("Tags to include:")
+                        .padding(.trailing)
+                    TextField("Enter topics to exclude", text: $viewModel.includedTopics )
+                        .border(.green)
+                }
+            }
+            .padding()
+            Spacer()
+        }
         
     }
 }

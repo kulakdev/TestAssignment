@@ -26,7 +26,7 @@ struct ContentView: View {
                 SearchbarView(currentMessage: $currentMessage, q: $q, viewModel: viewModel)
 //                sorry, it does not work as a View
                 HStack {
-                    IncludeExcludeView()
+                    IncludeExcludeView(viewModel: viewModel)
                     Picker("Sort news by", selection: $sortMode) {
                         ForEach(sortedOptions, id: \.0) { option in
                             Text(option.1).tag(option.0)

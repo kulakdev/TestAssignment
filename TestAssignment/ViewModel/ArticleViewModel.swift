@@ -13,13 +13,20 @@ class ArticleViewModel: ObservableObject {
     @Published var lastFetchedName: String = "NEWS"
     
     
+    @Published var excludedTopics: String = ""
+    @Published var includedTopics: String = ""
+    
+    
+    
     func fetchNews(query: String, sortBy: String = "publishedAt"){
+        
+        
         var urlComponents = URLComponents()
             urlComponents.scheme = "https"
             urlComponents.host = "newsapi.org"
             urlComponents.path = "/v2/everything"
             urlComponents.queryItems = [
-                URLQueryItem(name: "q", value: query),
+                URLQueryItem(name: "q", value: query + convertInclude(includes: includedTopics) + convertExclude(excludes: excludedTopics)),
                 URLQueryItem(name: "apiKey", value: "f1ec47c0a4a84ebe99aaf50d447f5c64"),
                 URLQueryItem(name: "sortBy", value: "\(sortBy)")
             ]
@@ -28,6 +35,8 @@ class ArticleViewModel: ObservableObject {
             print("invalid url")
             return
         }
+        
+        
         
         var request = URLRequest(url: url)
         print(request)
