@@ -6,11 +6,7 @@ struct ToolbarView: View{
     @Binding var query: String
 //    @ObservedObject var viewModel: ArticleViewModel
     
-    let sortedOptions: [(String, String)] = [
-            ("relevancy", "Most Relevant"),
-            ("popularity", "Most Popular"),
-            ("publishedAt", "Newest")
-        ]
+    
         
     
     var body: some View {

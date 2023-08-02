@@ -7,6 +7,13 @@
 
 import Foundation
 
+let sortedOptions: [(String, String)] = [
+        ("relevancy", "Most Relevant"),
+        ("popularity", "Most Popular"),
+        ("publishedAt", "Newest")
+    ]
+
+
 struct ArticleResponse: Codable {
     let status: String
     let totalResults: Int
