@@ -4,8 +4,7 @@ import Foundation
 struct ToolbarView: View{
     @Binding var sortMode : String
     @Binding var query: String
-    
-    var viewModel = ArticleViewModel()
+//    @ObservedObject var viewModel: ArticleViewModel
     
     let sortedOptions: [(String, String)] = [
             ("relevancy", "Most Relevant"),
@@ -27,7 +26,7 @@ struct ToolbarView: View{
             .foregroundColor(.white)
             .onChange(of: sortMode){newValue in
                 print("value changed \(newValue)")
-                viewModel.fetchNews(query: query, sortBy: newValue)
+//                viewModel.fetchNews(query: query, sortBy: newValue)
             }
         }
     }

@@ -11,6 +11,7 @@ struct ContentView: View {
     @State var q = "Україна"
     @State var currentMessage = "Enter search parameter"
     @State private var sortMode: String = "publishedAt"
+    
     @StateObject private var viewModel = ArticleViewModel()
     
     
@@ -24,7 +25,26 @@ struct ContentView: View {
         NavigationStack{
             VStack {
                 SearchbarView(currentMessage: $currentMessage, q: $q, viewModel: viewModel)
-                ToolbarView(sortMode: $sortMode, query: $q)
+//                sorry for having to put this out here, i know it looks ugly
+//                but no matter what i try the toolbarView view won't update this page
+//                no matter what. If i were to guess it's probably because of viewMode
+//                having to be passed up and down. In any case such complexity breaks the updating
+//                of the main screen
+                Picker("Sort news by", selection: $sortMode) {
+                    ForEach(sortedOptions, id: \.0) { option in
+                        Text(option.1).tag(option.0)
+                    }
+                }
+                .pickerStyle(MenuPickerStyle())
+                .frame(width: 180)
+                .background(Color(hue: 0.598, saturation: 0.076, brightness: 0.969, opacity: 10.0))
+                .cornerRadius(10)
+                .foregroundColor(.white)
+                .onChange(of: sortMode){newValue in
+                    print("value changed \(newValue)")
+                    viewModel.fetchNews(query: q, sortBy: newValue)
+                }
+                
                 List(viewModel.articles, id: \.url) { item in
                     NavigationLink(destination: DetailView(item: item)) {
                         VStack {
