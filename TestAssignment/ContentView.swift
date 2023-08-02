@@ -11,7 +11,6 @@ struct ContentView: View {
     @State var q = "Україна"
     @State var currentMessage = "Enter search parameter"
     @State private var sortMode: String = "publishedAt"
-    
     @StateObject private var viewModel = ArticleViewModel()
     
     
@@ -25,11 +24,7 @@ struct ContentView: View {
         NavigationStack{
             VStack {
                 SearchbarView(currentMessage: $currentMessage, q: $q, viewModel: viewModel)
-//                sorry for having to put this out here, i know it looks ugly
-//                but no matter what i try the toolbarView view won't update this page
-//                no matter what. If i were to guess it's probably because of viewMode
-//                having to be passed up and down. In any case such complexity breaks the updating
-//                of the main screen
+//                sorry, it does not work as a View
                 Picker("Sort news by", selection: $sortMode) {
                     ForEach(sortedOptions, id: \.0) { option in
                         Text(option.1).tag(option.0)
@@ -44,7 +39,6 @@ struct ContentView: View {
                     print("value changed \(newValue)")
                     viewModel.fetchNews(query: q, sortBy: newValue)
                 }
-                
                 List(viewModel.articles, id: \.url) { item in
                     NavigationLink(destination: DetailView(item: item)) {
                         VStack {
@@ -59,10 +53,11 @@ struct ContentView: View {
                         
                     }
                 }
-                .navigationTitle($q)
+                .navigationTitle(q)
             }
         }
         .padding()
+//        default value so that it's not as boring
         .task{
             viewModel.fetchNews(query: "Україна")
         }

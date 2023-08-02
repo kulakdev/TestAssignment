@@ -25,7 +25,7 @@ struct ToolbarView: View{
             .cornerRadius(10)
             .foregroundColor(.white)
             .onChange(of: sortMode){newValue in
-                print("value changed \(newValue)")
+//                print("value changed \(newValue)")
 //                viewModel.fetchNews(query: query, sortBy: newValue)
             }
         }

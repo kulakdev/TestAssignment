@@ -23,7 +23,7 @@ struct SearchbarView: View{
             .cornerRadius(15)
             .foregroundColor(.white)
         }
-        .padding()
+        .padding(.horizontal)
         .accessibilityLabel("Search for news")
     }
 }
