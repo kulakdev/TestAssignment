@@ -13,8 +13,7 @@ struct DetailView: View {
     var body: some View{
         ScrollView {
             VStack(alignment: .center){
-                Text(dateFormatter.string(from: item.publishedAt))
-                    .foregroundColor(.red)
+                Text(dateFormatter.string(from: item.publishedAt)).foregroundColor(.red)
                 Text(item.title)
                     .font(.largeTitle)
                     .lineLimit(nil)
@@ -22,12 +21,9 @@ struct DetailView: View {
                 VStack(alignment: .center){
                     HStack{
                         Text(item.source.name).bold()
-                        Text(item.author ?? "")
-                            .lineLimit(nil)
+                        Text(item.author ?? "").lineLimit(nil)
                     }
-                    
-                    .foregroundColor(.blue)
-                    
+                    .foregroundColor(.blue)  
                 }
                 .font(.subheadline)
                 .fixedSize()
