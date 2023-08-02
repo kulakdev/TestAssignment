@@ -9,17 +9,19 @@ import Foundation
 
 class ArticleViewModel: ObservableObject {
     @Published private(set) var articles = [Article]()
+    @Published var sortMode: String = "publishedAt"
+    @Published var lastFetchedName: String = "NEWS"
     
-    func fetchNews(query: String){
-        
+    
+    func fetchNews(query: String, sortBy: String = "publishedAt"){
         var urlComponents = URLComponents()
             urlComponents.scheme = "https"
             urlComponents.host = "newsapi.org"
             urlComponents.path = "/v2/everything"
-            
             urlComponents.queryItems = [
                 URLQueryItem(name: "q", value: query),
-                URLQueryItem(name: "apiKey", value: "f1ec47c0a4a84ebe99aaf50d447f5c64")
+                URLQueryItem(name: "apiKey", value: "f1ec47c0a4a84ebe99aaf50d447f5c64"),
+                URLQueryItem(name: "sortBy", value: "\(sortBy)")
             ]
         
         guard let url = urlComponents.url else {
@@ -28,12 +30,12 @@ class ArticleViewModel: ObservableObject {
         }
         
         var request = URLRequest(url: url)
-        
+        print(request)
         request.addValue("f1ec47c0a4a84ebe99aaf50d447f5c64", forHTTPHeaderField: "X-Auth-Token")
         request.httpMethod = "GET"
         
         
-        let dataTask = URLSession.shared.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
+        let dataTask = URLSession.shared.dataTask(with: request) { [self] (data: Data?, response: URLResponse?, error: Error?) in
                 // handle error
                 if let error = error {
                     print("Error: \(error)")
@@ -53,6 +55,8 @@ class ArticleViewModel: ObservableObject {
                                 let articles = articleResponse.articles
                                 
                                 print("Articles count: \(articles.count)")
+
+                                
                                 DispatchQueue.main.async {
                                     self.articles = articleResponse.articles
                                 }

@@ -13,7 +13,7 @@ struct SearchbarView: View{
                 .font(.title2)
             Button("Search"){
                 if !q.isEmpty {
-                    viewModel.fetchNews(query: String(q))
+                    viewModel.fetchNews(query: q)
                 } else {
                     currentMessage = "ENTER THE SEARCH PARAMETER"
                 }
@@ -23,7 +23,7 @@ struct SearchbarView: View{
             .cornerRadius(15)
             .foregroundColor(.white)
         }
-        .padding()
+        .padding(.horizontal)
         .accessibilityLabel("Search for news")
     }
 }
