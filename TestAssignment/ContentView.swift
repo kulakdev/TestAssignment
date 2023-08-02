@@ -9,22 +9,24 @@ import SwiftUI
 
 struct ContentView: View {
     @State var q = ""
+    @State var currentMessage = "Enter search parameter"
     @StateObject private var viewModel = ArticleViewModel()
     
     var body: some View {
         NavigationStack{
             VStack {
-                TextField("Enter search parameter", text: $q)
-                Button("Search"){
-                    viewModel.fetchNews(query: q)
-                }
+                SearchbarView(currentMessage: $currentMessage, q: $q, viewModel: viewModel)
                 List(viewModel.articles, id: \.title) { item in
-                    VStack {
-                        Text(item.title)
-                            .font(.headline)
-                        Text(item.author ?? "author unknown")
+                    NavigationLink(destination: DetailView(item: item)) {
+                        VStack {
+                            Text(item.title)
+                                .font(.headline)
+                            Text(item.author ?? "author unknown")
+                        }
+                        
                     }
                 }
+                .navigationTitle("NEWS")
             }
         }
         .padding()

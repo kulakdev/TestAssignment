@@ -23,9 +23,6 @@ struct Article: Codable {
     let publishedAt: Date
     let content: String
     
-    var notNullAuthor: String {
-        return author ?? ""
-    }
 }
 
 struct Source: Codable {
