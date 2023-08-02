@@ -56,7 +56,7 @@ struct ContentView: View {
                 .navigationTitle(q)
             }
         }
-        .padding()
+        .padding(.horizontal)
 //        default value so that it's not as boring
         .task{
             viewModel.fetchNews(query: "Україна")
