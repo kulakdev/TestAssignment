@@ -25,19 +25,22 @@ struct ContentView: View {
             VStack {
                 SearchbarView(currentMessage: $currentMessage, q: $q, viewModel: viewModel)
 //                sorry, it does not work as a View
-                Picker("Sort news by", selection: $sortMode) {
-                    ForEach(sortedOptions, id: \.0) { option in
-                        Text(option.1).tag(option.0)
+                HStack {
+                    IncludeExcludeView()
+                    Picker("Sort news by", selection: $sortMode) {
+                        ForEach(sortedOptions, id: \.0) { option in
+                            Text(option.1).tag(option.0)
+                        }
                     }
-                }
-                .pickerStyle(MenuPickerStyle())
-                .frame(width: 180)
-                .background(Color(hue: 0.598, saturation: 0.076, brightness: 0.969, opacity: 10.0))
-                .cornerRadius(10)
-                .foregroundColor(.white)
-                .onChange(of: sortMode){newValue in
-                    print("value changed \(newValue)")
-                    viewModel.fetchNews(query: q, sortBy: newValue)
+                    .pickerStyle(MenuPickerStyle())
+                    .frame(width: 180)
+                    .background(Color(hue: 0.598, saturation: 0.076, brightness: 0.969, opacity: 10.0))
+                    .cornerRadius(10)
+                    .foregroundColor(.white)
+                    .onChange(of: sortMode){newValue in
+                        print("value changed \(newValue)")
+                        viewModel.fetchNews(query: q, sortBy: newValue)
+                    }
                 }
                 List(viewModel.articles, id: \.url) { item in
                     NavigationLink(destination: DetailView(item: item)) {
