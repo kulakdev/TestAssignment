@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct IncludeExcludeView: View {
-    @State var sheetVisibility = true
+    @State var sheetVisibility = false
     @Binding var q: String
     @Binding var sortMode: String
     @ObservedObject var viewModel: ArticleViewModel
@@ -32,7 +32,7 @@ struct IncludeExcludeView: View {
                 } label: {
                     Image(systemName: "xmark.circle")
                         .font(.system(size: 30))
-                        .frame(width: 50, height: 60)
+                        .frame(width: 30, height: 60)
                         .padding(.trailing, 20)
                 }
             }
@@ -43,8 +43,7 @@ struct IncludeExcludeView: View {
                         .font(.title3)
                         .fontWeight(.medium)
                     TextField("Enter topics to exclude", text: $viewModel.excludedTopics )
-                        .padding(.horizontal)
-                        .frame(width: 400, height: 30).cornerRadius(6)
+                        .padding()
                         .overlay(
                             RoundedRectangle(cornerRadius: 6)
                                 .stroke(.red, lineWidth: 1)
@@ -57,8 +56,7 @@ struct IncludeExcludeView: View {
                         .font(.title3)
                         .fontWeight(.medium)
                     TextField("Enter topics to exclude", text: $viewModel.includedTopics )
-                        .padding(.horizontal)
-                        .frame(width: 400, height: 30).cornerRadius(6)
+                        .padding()
                         .overlay(
                             RoundedRectangle(cornerRadius: 6)
                                 .stroke(.green, lineWidth: 1)
@@ -73,7 +71,7 @@ struct IncludeExcludeView: View {
                         .padding(.horizontal)
                     
                     DatePicker("Posts released before:", selection: $viewModel.to, in: viewModel.bottomRange...viewModel.upperRange, displayedComponents: [.date])
-                        .padding()
+                        .padding(.horizontal)
                 }
             }
             .padding()
