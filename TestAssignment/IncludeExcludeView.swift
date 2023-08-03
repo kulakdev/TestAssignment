@@ -18,6 +18,7 @@ struct IncludeExcludeView: View {
             sheetVisibility.toggle()
             
         }
+        .padding([.top, .trailing], 3.0)
         .sheet(isPresented: $sheetVisibility){
             print("Sheet is closed")
 //            viewModel.fetchNews(query: q, sortBy: sortMode)
@@ -29,9 +30,10 @@ struct IncludeExcludeView: View {
                     sheetVisibility.toggle()
                 
                 } label: {
-                    Image(systemName: "xmark.circle.fill")
+                    Image(systemName: "xmark.circle")
                         .font(.system(size: 30))
-                        .padding(.trailing)
+                        .frame(width: 50, height: 60)
+                        .padding(.trailing, 20)
                 }
             }
             VStack{
@@ -63,17 +65,24 @@ struct IncludeExcludeView: View {
                         )
                 }
                 .padding()
-                DatePicker("Posts released after:", selection: $viewModel.from, displayedComponents: [.date])
-                    .padding()
-                Text("Posts are limited to one month old")
-                    .font(.caption2)
-                    .foregroundColor(Color(red: 00, green: 00, blue: 00, opacity: 60))
-                DatePicker("Posts released before:", selection: $viewModel.to, displayedComponents: [.date])
-                    .padding()
+                VStack{
+                    Text("Posts are limited to one month old")
+                        .font(.callout)
+                        .foregroundColor(.gray)
+                    DatePicker("Posts released after:",selection: $viewModel.from, in: viewModel.bottomRange...viewModel.upperRange, displayedComponents: [.date])
+                        .padding(.horizontal)
+                    
+                    DatePicker("Posts released before:", selection: $viewModel.to, in: viewModel.bottomRange...viewModel.upperRange, displayedComponents: [.date])
+                        .padding()
+                }
             }
             .padding()
+            .presentationDragIndicator(.visible)
             Spacer()
         }
+        .presentationDetents([.medium])
+        .presentationDragIndicator(.visible)
+        
     }
 }
 

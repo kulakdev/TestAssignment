@@ -16,7 +16,7 @@ class ArticleViewModel: ObservableObject {
     @Published var excludedTopics: String = ""
     @Published var includedTopics: String = ""
     
-    @Published var to: Date
+    @Published var to: Date = Date()
     @Published var upperRange: Date = Date()
     
     
