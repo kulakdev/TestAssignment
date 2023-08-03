@@ -11,7 +11,7 @@ import SwiftUI
 func convertInclude(includes: String) -> String{
     var result: String = includes
     if includes != "" {
-        let array = includes.split(separator: [",", " ", "!",".","?"])
+        let array = includes.split(whereSeparator: { $0.isWhitespace || $0.isPunctuation })
         let mutatedArr = array.map { "+\"\($0)\""  }
         result = mutatedArr.joined()
         return result
@@ -22,7 +22,7 @@ func convertInclude(includes: String) -> String{
 func convertExclude(excludes: String) -> String{
     var result: String = excludes
     if excludes != ""{
-        let array = excludes.split(separator: [",", " ", "!",".","?"])
+        let array = excludes.split(whereSeparator: { $0.isWhitespace || $0.isPunctuation })
         let mutatedArr = array.map { "-\"\($0)\"" }
         result = mutatedArr.joined()
         print(result)

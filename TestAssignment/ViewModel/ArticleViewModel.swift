@@ -16,7 +16,8 @@ class ArticleViewModel: ObservableObject {
     @Published var excludedTopics: String = ""
     @Published var includedTopics: String = ""
     
-    
+    @Published var to: Date = Date()
+    @Published var from: Date = Calendar.current.date(byAdding: .weekOfYear, value: -1, to: Date())  ?? Date()
     
     func fetchNews(query: String, sortBy: String = "publishedAt"){
         
@@ -28,7 +29,9 @@ class ArticleViewModel: ObservableObject {
             urlComponents.queryItems = [
                 URLQueryItem(name: "q", value: query + convertInclude(includes: includedTopics) + convertExclude(excludes: excludedTopics)),
                 URLQueryItem(name: "apiKey", value: "29150e61228f48e290e7dbadabc051f7"),
-                URLQueryItem(name: "sortBy", value: "\(sortBy)")
+                URLQueryItem(name: "sortBy", value: "\(sortBy)"),
+                URLQueryItem(name: "to", value: "\(to)"),
+                URLQueryItem(name: "from", value: "\(from)")
             ]
         
         guard let url = urlComponents.url else {

@@ -12,7 +12,7 @@ struct IncludeExcludeView: View {
     @ObservedObject var viewModel: ArticleViewModel
     
     var body: some View{
-        Button("Include / Exclude"){
+        Button("Sorting options"){
             sheetVisibility.toggle()
         }
         .sheet(isPresented: $sheetVisibility){
@@ -41,6 +41,8 @@ struct IncludeExcludeView: View {
                     TextField("Enter topics to exclude", text: $viewModel.includedTopics )
                         .border(.green)
                 }
+                DatePicker("Posts released after:", selection: $viewModel.from, displayedComponents: [.date])
+                DatePicker("Posts released before:", selection: $viewModel.to, displayedComponents: [.date])
             }
             .padding()
             Spacer()

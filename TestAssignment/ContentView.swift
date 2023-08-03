@@ -56,7 +56,7 @@ struct ContentView: View {
                         
                     }
                 }
-                .navigationTitle(q)
+                .navigationTitle("NEWS")
             }
         }
         .padding(.horizontal)
