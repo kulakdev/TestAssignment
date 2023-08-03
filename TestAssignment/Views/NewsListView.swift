@@ -9,7 +9,6 @@ import SwiftUI
 
 
 struct NewsListView: View {
-    
     @StateObject var viewModel : ArticleViewModel
     
     var body: some View{

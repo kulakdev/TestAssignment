@@ -23,7 +23,6 @@ struct ContentView: View {
             }
         }
         .padding(.horizontal)
-//       default value
         .task{
             viewModel.fetchNews(query: "Україна")
         }

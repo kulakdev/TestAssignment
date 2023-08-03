@@ -13,6 +13,7 @@ struct SearchbarView: View{
                         .stroke(.blue, lineWidth: 1)
                 )
                 .font(.title2)
+            
             Button("Search"){
                 if !viewModel.q.isEmpty {
                     viewModel.fetchNews(query: viewModel.q)
