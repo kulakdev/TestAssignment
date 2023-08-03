@@ -2,7 +2,7 @@ import SwiftUI
 import Foundation
 
 struct SortingView: View{
-    @ObservedObject var viewModel: ArticleViewModel = ArticleViewModel()  
+    @ObservedObject var viewModel: ArticleViewModel
     
     var body: some View {
         Picker("Sort news by", selection: $viewModel.sortMode) {

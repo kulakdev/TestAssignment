@@ -10,7 +10,24 @@ import SwiftUI
 
 struct NewsListView: View {
     
+    @StateObject var viewModel : ArticleViewModel
+    
     var body: some View{
-        Text("hello world")
+        List(viewModel.articles, id: \.title) { item in
+            NavigationLink(destination: DetailView(item: item)) {
+                VStack {
+                    Text(item.title ?? "title unavailable")
+                        .padding(.horizontal)
+                        .font(.headline)
+                        .multilineTextAlignment(.leading)
+                    Text(item.author ?? "author unknown")
+                        .lineLimit(1)
+                        .padding(.trailing)
+                        
+                }
+                
+            }
+        }
+        .navigationTitle("NEWS")
     }
 }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct IncludeExcludeView: View {
     @State var sheetVisibility = false
-    @ObservedObject var viewModel: ArticleViewModel = ArticleViewModel()
+    @ObservedObject var viewModel: ArticleViewModel
     
     var body: some View{
         Button("Sorting options"){
@@ -85,7 +85,7 @@ struct IncludeExcludeView: View {
 struct IncludeExcludeView_Preview: PreviewProvider {
     static var previews: some View {
         let viewModel = ArticleViewModel()
-        return IncludeExcludeView()
+        return IncludeExcludeView(viewModel: viewModel)
             .padding()
     }
 }

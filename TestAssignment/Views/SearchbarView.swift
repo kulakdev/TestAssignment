@@ -2,7 +2,7 @@ import SwiftUI
 
 struct SearchbarView: View{
     @State var currentMessage: String = "Enter the search parameter"
-    @ObservedObject var viewModel : ArticleViewModel = ArticleViewModel()
+    @ObservedObject var viewModel : ArticleViewModel
     
     var body: some View{
         HStack {
