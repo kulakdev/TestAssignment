@@ -16,7 +16,11 @@ class ArticleViewModel: ObservableObject {
     @Published var excludedTopics: String = ""
     @Published var includedTopics: String = ""
     
-    @Published var to: Date = Date()
+    @Published var to: Date
+    @Published var upperRange: Date = Date()
+    
+    
+//    i'm sorry, i just need two instances because one will be mutated
     @Published var from: Date = {
         let calendar = Calendar.current
         guard let oneMonthAgo = calendar.date(byAdding: .month, value: -1, to: Date()) else {
@@ -25,6 +29,17 @@ class ArticleViewModel: ObservableObject {
         let components = calendar.dateComponents([.year, .month, .day], from: oneMonthAgo)
         return calendar.date(from: components) ?? Date()
     }()
+    
+    @Published var bottomRange: Date = {
+        let calendar = Calendar.current
+        guard let oneMonthAgo = calendar.date(byAdding: .month, value: -1, to: Date()) else {
+            return Date()
+        }
+        let components = calendar.dateComponents([.year, .month, .day], from: oneMonthAgo)
+        return calendar.date(from: components) ?? Date()
+    }()
+    
+    
     
     func fetchNews(query: String, sortBy: String = "publishedAt"){
         let dateFormatter = ISO8601DateFormatter()
