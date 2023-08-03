@@ -21,10 +21,11 @@ struct DetailView: View {
                 VStack(alignment: .center){
                     HStack{
                         Text(item.source.name).bold()
-                        Text(item.author ?? "").lineLimit(nil)
+                        Text(item.author ?? "").lineLimit(nil).multilineTextAlignment(.center)
                     }
                     .foregroundColor(.blue)  
                 }
+                .padding(5)
                 .font(.subheadline)
                 .fixedSize()
                 
@@ -39,7 +40,9 @@ struct DetailView: View {
                         
                         .padding(10)
                 } placeholder: {
+                    Text("Attempting to load the image")
                     ProgressView().progressViewStyle(.circular)
+                        .padding()
                 }
             }
             .padding()

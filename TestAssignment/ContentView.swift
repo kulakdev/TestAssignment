@@ -8,36 +8,28 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var q: String = "Україна"
-    @State var currentMessage: String = "Enter search parameter"
-    @State var sortMode: String = "publishedAt"
     @StateObject private var viewModel = ArticleViewModel()
     
-    
-    let sortedOptions: [(String, String)] = [
-            ("relevancy", "Most Relevant"),
-            ("popularity", "Most Popular"),
-            ("publishedAt", "Newest")
-        ]
     
     var body: some View {
         NavigationStack{
             VStack {
-                SearchbarView(currentMessage: $currentMessage, q: $q, viewModel: viewModel)
+                SearchbarView(q: $viewModel.q, viewModel: viewModel)
                 HStack {
-                    IncludeExcludeView(q: $q, sortMode: $sortMode, viewModel: viewModel)
+                    IncludeExcludeView(q: $viewModel.q, sortMode: $viewModel.sortMode, viewModel: viewModel)
                     
-                    ToolbarView(sortMode: $sortMode, query: $q, viewModel: viewModel)
+                    ToolbarView(sortMode: $viewModel.sortMode, query: $viewModel.q, viewModel: viewModel)
                 }
                 List(viewModel.articles, id: \.title) { item in
                     NavigationLink(destination: DetailView(item: item)) {
                         VStack {
                             Text(item.title ?? "title unavailable")
+                                .padding(.horizontal)
                                 .font(.headline)
                                 .multilineTextAlignment(.leading)
                             Text(item.author ?? "author unknown")
                                 .lineLimit(1)
-                                .padding(.horizontal)
+                                .padding(.trailing)
                                 
                         }
                         

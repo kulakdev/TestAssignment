@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct SearchbarView: View{
-    @Binding var currentMessage: String
+    @Binding var currentMessage: String = "Enter the search parameter"
     @Binding var q: String
     @ObservedObject var viewModel : ArticleViewModel
     
