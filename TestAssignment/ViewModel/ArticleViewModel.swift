@@ -27,7 +27,7 @@ class ArticleViewModel: ObservableObject {
             urlComponents.path = "/v2/everything"
             urlComponents.queryItems = [
                 URLQueryItem(name: "q", value: query + convertInclude(includes: includedTopics) + convertExclude(excludes: excludedTopics)),
-                URLQueryItem(name: "apiKey", value: "f1ec47c0a4a84ebe99aaf50d447f5c64"),
+                URLQueryItem(name: "apiKey", value: "29150e61228f48e290e7dbadabc051f7"),
                 URLQueryItem(name: "sortBy", value: "\(sortBy)")
             ]
         
@@ -58,6 +58,8 @@ class ArticleViewModel: ObservableObject {
                             do {
                                 let decoder = JSONDecoder()
                                 decoder.dateDecodingStrategy = .iso8601
+//                                decoder.keyDecodingStrategy =
+                                
                                 
                                 let articleResponse = try decoder.decode(ArticleResponse.self, from: data)
                                 

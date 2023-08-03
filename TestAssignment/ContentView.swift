@@ -42,10 +42,10 @@ struct ContentView: View {
                         viewModel.fetchNews(query: q, sortBy: newValue)
                     }
                 }
-                List(viewModel.articles, id: \.url) { item in
+                List(viewModel.articles, id: \.title) { item in
                     NavigationLink(destination: DetailView(item: item)) {
                         VStack {
-                            Text(item.title)
+                            Text(item.title ?? "title unavailable")
                                 .font(.headline)
                                 .multilineTextAlignment(.leading)
                             Text(item.author ?? "author unknown")

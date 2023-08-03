@@ -14,7 +14,7 @@ struct DetailView: View {
         ScrollView {
             VStack(alignment: .center){
                 Text(dateFormatter.string(from: item.publishedAt)).foregroundColor(.red)
-                Text(item.title)
+                Text(item.title ?? "title unavailable")
                     .font(.largeTitle)
                     .lineLimit(nil)
                     .multilineTextAlignment(.center)
