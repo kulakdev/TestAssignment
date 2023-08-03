@@ -5,11 +5,12 @@
 //  Created by Constantine Kulak on 03.08.2023.
 //
 
-import Foundation
+import SwiftUI
 
 
-struct NewsListView {
+struct NewsListView: View {
+    
     var body: some View{
-        
+        Text("hello world")
     }
 }
