@@ -9,19 +9,25 @@ import SwiftUI
 
 struct IncludeExcludeView: View {
     @State var sheetVisibility = false
+    @Binding var q: String
+    @Binding var sortMode: String
     @ObservedObject var viewModel: ArticleViewModel
     
     var body: some View{
         Button("Sorting options"){
             sheetVisibility.toggle()
+            
         }
         .sheet(isPresented: $sheetVisibility){
             print("Sheet is closed")
+//            viewModel.fetchNews(query: q, sortBy: sortMode)
         } content : {
             HStack{
                 Spacer()
                 Button(){
+                    viewModel.fetchNews(query: q, sortBy: sortMode)
                     sheetVisibility.toggle()
+                
                 } label: {
                     Image(systemName: "xmark.circle.fill")
                         .font(.system(size: 40))
@@ -47,6 +53,5 @@ struct IncludeExcludeView: View {
             .padding()
             Spacer()
         }
-        
     }
 }

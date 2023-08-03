@@ -4,7 +4,7 @@ import Foundation
 struct ToolbarView: View{
     @Binding var sortMode : String
     @Binding var query: String
-//    @ObservedObject var viewModel: ArticleViewModel
+    @ObservedObject var viewModel: ArticleViewModel
     
     
         
@@ -21,8 +21,8 @@ struct ToolbarView: View{
             .cornerRadius(10)
             .foregroundColor(.white)
             .onChange(of: sortMode){newValue in
-//                print("value changed \(newValue)")
-//                viewModel.fetchNews(query: query, sortBy: newValue)
+                print("value changed \(newValue)")
+                viewModel.fetchNews(query: query, sortBy: newValue)
             }
         }
     }

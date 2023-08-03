@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var q = "Україна"
-    @State var currentMessage = "Enter search parameter"
-    @State private var sortMode: String = "publishedAt"
+    @State var q: String = "Україна"
+    @State var currentMessage: String = "Enter search parameter"
+    @State var sortMode: String = "publishedAt"
     @StateObject private var viewModel = ArticleViewModel()
     
     
@@ -24,23 +24,11 @@ struct ContentView: View {
         NavigationStack{
             VStack {
                 SearchbarView(currentMessage: $currentMessage, q: $q, viewModel: viewModel)
+                    
 //                sorry, it does not work as a View
                 HStack {
-                    IncludeExcludeView(viewModel: viewModel)
-                    Picker("Sort news by", selection: $sortMode) {
-                        ForEach(sortedOptions, id: \.0) { option in
-                            Text(option.1).tag(option.0)
-                        }
-                    }
-                    .pickerStyle(MenuPickerStyle())
-                    .frame(width: 180)
-                    .background(Color(hue: 0.598, saturation: 0.076, brightness: 0.969, opacity: 10.0))
-                    .cornerRadius(10)
-                    .foregroundColor(.white)
-                    .onChange(of: sortMode){newValue in
-                        print("value changed \(newValue)")
-                        viewModel.fetchNews(query: q, sortBy: newValue)
-                    }
+                    IncludeExcludeView(q: $q, sortMode: $sortMode, viewModel: viewModel)
+                    ToolbarView(sortMode: $sortMode, query: $q, viewModel: viewModel)
                 }
                 List(viewModel.articles, id: \.title) { item in
                     NavigationLink(destination: DetailView(item: item)) {
@@ -66,7 +54,6 @@ struct ContentView: View {
         }
     }
 }
-
 
 
 struct ContentView_Previews: PreviewProvider {

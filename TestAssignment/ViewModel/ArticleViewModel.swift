@@ -11,16 +11,25 @@ class ArticleViewModel: ObservableObject {
     @Published private(set) var articles = [Article]()
     @Published var sortMode: String = "publishedAt"
     @Published var lastFetchedName: String = "NEWS"
-    
+    @Published var q = "Україна"
     
     @Published var excludedTopics: String = ""
     @Published var includedTopics: String = ""
     
     @Published var to: Date = Date()
-    @Published var from: Date = Calendar.current.date(byAdding: .weekOfYear, value: -1, to: Date())  ?? Date()
+//    1 jan 1970 
+    @Published var from: Date = {
+        let calendar = Calendar.current
+        var components =  DateComponents(year: 2023, month: 07, day: 3)
+        return calendar.date(from: components) ?? Date()
+    }()
     
     func fetchNews(query: String, sortBy: String = "publishedAt"){
-        
+        let dateFormatter = ISO8601DateFormatter()
+
+            let formattedTo = dateFormatter.string(from: to)
+            let formattedFrom = dateFormatter.string(from: from)
+            
         
         var urlComponents = URLComponents()
             urlComponents.scheme = "https"
@@ -30,8 +39,8 @@ class ArticleViewModel: ObservableObject {
                 URLQueryItem(name: "q", value: query + convertInclude(includes: includedTopics) + convertExclude(excludes: excludedTopics)),
                 URLQueryItem(name: "apiKey", value: "29150e61228f48e290e7dbadabc051f7"),
                 URLQueryItem(name: "sortBy", value: "\(sortBy)"),
-                URLQueryItem(name: "to", value: "\(to)"),
-                URLQueryItem(name: "from", value: "\(from)")
+                URLQueryItem(name: "to", value: "\(formattedTo)"),
+                URLQueryItem(name: "from", value: "\(formattedFrom)")
             ]
         
         guard let url = urlComponents.url else {
