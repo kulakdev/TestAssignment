@@ -17,7 +17,7 @@ struct ContentView: View {
                 SearchbarView()
                 HStack {
                     IncludeExcludeView()
-                    ToolbarView()
+                    SortingView()
                 }
                 List(viewModel.articles, id: \.title) { item in
                     NavigationLink(destination: DetailView(item: item)) {

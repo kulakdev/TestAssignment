@@ -1,11 +1,8 @@
 import SwiftUI
 import Foundation
 
-struct ToolbarView: View{
-    @ObservedObject var viewModel: ArticleViewModel = ArticleViewModel()
-    
-    
-        
+struct SortingView: View{
+    @ObservedObject var viewModel: ArticleViewModel = ArticleViewModel()  
     
     var body: some View {
         Picker("Sort news by", selection: $viewModel.sortMode) {
