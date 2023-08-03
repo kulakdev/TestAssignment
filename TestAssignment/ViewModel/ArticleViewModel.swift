@@ -54,7 +54,7 @@ class ArticleViewModel: ObservableObject {
             urlComponents.path = "/v2/everything"
             urlComponents.queryItems = [
                 URLQueryItem(name: "q", value: query + convertInclude(includes: includedTopics) + convertExclude(excludes: excludedTopics)),
-                URLQueryItem(name: "apiKey", value: "29150e61228f48e290e7dbadabc051f7"),
+                URLQueryItem(name: "apiKey", value: "f1ec47c0a4a84ebe99aaf50d447f5c64"),
                 URLQueryItem(name: "sortBy", value: "\(sortBy)"),
                 URLQueryItem(name: "to", value: "\(formattedTo)"),
                 URLQueryItem(name: "from", value: "\(formattedFrom)")
@@ -69,7 +69,7 @@ class ArticleViewModel: ObservableObject {
         
         var request = URLRequest(url: url)
         print(request)
-        request.addValue("f1ec47c0a4a84ebe99aaf50d447f5c64", forHTTPHeaderField: "X-Auth-Token")
+        request.addValue("f1ec47c0a4a84ebe99aaf50d447f5c64, 29150e61228f48e290e7dbadabc051f7", forHTTPHeaderField: "X-Auth-Token")
         request.httpMethod = "GET"
         
         

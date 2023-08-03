@@ -16,8 +16,7 @@ struct ToolbarView: View{
                 }
             }
             .pickerStyle(MenuPickerStyle())
-            .frame(width: 180)
-            .background(Color(hue: 0.598, saturation: 0.076, brightness: 0.969, opacity: 10.0))
+            .padding()
             .cornerRadius(10)
             .foregroundColor(.white)
             .onChange(of: sortMode){newValue in

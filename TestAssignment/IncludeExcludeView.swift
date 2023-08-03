@@ -18,10 +18,9 @@ struct IncludeExcludeView: View {
             sheetVisibility.toggle()
             
         }
-        .padding([.top, .trailing], 3.0)
+        .padding()
         .sheet(isPresented: $sheetVisibility){
             print("Sheet is closed")
-//            viewModel.fetchNews(query: q, sortBy: sortMode)
         } content : {
             HStack{
                 Spacer()
@@ -87,7 +86,7 @@ struct IncludeExcludeView: View {
 
 struct IncludeExcludeView_Preview: PreviewProvider {
     static var previews: some View {
-        let viewModel = ArticleViewModel() // Create an instance of your ArticleViewModel
+        let viewModel = ArticleViewModel()
         return IncludeExcludeView(q: .constant("Bazinga"), sortMode: .constant("publishedAt"), viewModel: viewModel)
             .padding()
     }

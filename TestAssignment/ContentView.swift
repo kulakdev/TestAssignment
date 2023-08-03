@@ -24,10 +24,9 @@ struct ContentView: View {
         NavigationStack{
             VStack {
                 SearchbarView(currentMessage: $currentMessage, q: $q, viewModel: viewModel)
-                    
-//                sorry, it does not work as a View
                 HStack {
                     IncludeExcludeView(q: $q, sortMode: $sortMode, viewModel: viewModel)
+                    
                     ToolbarView(sortMode: $sortMode, query: $q, viewModel: viewModel)
                 }
                 List(viewModel.articles, id: \.title) { item in
@@ -37,8 +36,8 @@ struct ContentView: View {
                                 .font(.headline)
                                 .multilineTextAlignment(.leading)
                             Text(item.author ?? "author unknown")
-                                .multilineTextAlignment(.leading)
                                 .lineLimit(1)
+                                .padding(.horizontal)
                                 
                         }
                         
@@ -48,7 +47,7 @@ struct ContentView: View {
             }
         }
         .padding(.horizontal)
-//        default value so that it's not as boring
+//       default value
         .task{
             viewModel.fetchNews(query: "Україна")
         }

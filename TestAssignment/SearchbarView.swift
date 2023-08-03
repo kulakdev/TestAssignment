@@ -8,8 +8,11 @@ struct SearchbarView: View{
     var body: some View{
         HStack {
             TextField(currentMessage, text: $q)
-                .border(.blue)
-                .padding(7)
+                .padding(5)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 6)
+                        .stroke(.blue, lineWidth: 1)
+                )
                 .font(.title2)
             Button("Search"){
                 if !q.isEmpty {
@@ -18,7 +21,7 @@ struct SearchbarView: View{
                     currentMessage = "ENTER THE SEARCH PARAMETER"
                 }
             }
-            .padding(9)
+            .padding(10)
             .background(.blue)
             .cornerRadius(15)
             .foregroundColor(.white)
