@@ -17,10 +17,12 @@ class ArticleViewModel: ObservableObject {
     @Published var includedTopics: String = ""
     
     @Published var to: Date = Date()
-//    1 jan 1970 
     @Published var from: Date = {
         let calendar = Calendar.current
-        var components =  DateComponents(year: 2023, month: 07, day: 3)
+        guard let oneMonthAgo = calendar.date(byAdding: .month, value: -1, to: Date()) else {
+            return Date()
+        }
+        let components = calendar.dateComponents([.year, .month, .day], from: oneMonthAgo)
         return calendar.date(from: components) ?? Date()
     }()
     

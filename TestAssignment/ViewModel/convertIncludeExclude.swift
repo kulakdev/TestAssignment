@@ -31,7 +31,7 @@ func convertExclude(excludes: String) -> String{
     return ""
 }
 
-struct ConverIncludeExclude_Previews: PreviewProvider {
+struct ConvertIncludeExclude_Previews: PreviewProvider {
     @ObservedObject var viewModel: ArticleViewModel
     
     static var previews: some View {
@@ -41,4 +41,3 @@ struct ConverIncludeExclude_Previews: PreviewProvider {
         }
     }
 }
-
