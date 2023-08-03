@@ -20,7 +20,7 @@ class ArticleViewModel: ObservableObject {
     @Published var upperRange: Date = Date()
     
     
-//    i'm sorry, i just need two instances because one will be mutated
+//    i'm sorry, i just need two instances because one can be mutated, and another not
     @Published var from: Date = {
         let calendar = Calendar.current
         guard let oneMonthAgo = calendar.date(byAdding: .month, value: -1, to: Date()) else {
