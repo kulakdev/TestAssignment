@@ -2,15 +2,13 @@ import SwiftUI
 import Foundation
 
 struct ToolbarView: View{
-    @Binding var sortMode : String
-    @Binding var query: String
-    @ObservedObject var viewModel: ArticleViewModel
+    @ObservedObject var viewModel: ArticleViewModel = ArticleViewModel()
     
     
         
     
     var body: some View {
-            Picker("Sort news by", selection: $sortMode) {
+        Picker("Sort news by", selection: $viewModel.sortMode) {
                 ForEach(sortedOptions, id: \.0) { option in
                     Text(option.1).tag(option.0)
                 }
@@ -19,9 +17,9 @@ struct ToolbarView: View{
             .padding()
             .cornerRadius(10)
             .foregroundColor(.white)
-            .onChange(of: sortMode){newValue in
+            .onChange(of: viewModel.sortMode){newValue in
                 print("value changed \(newValue)")
-                viewModel.fetchNews(query: query, sortBy: newValue)
+                viewModel.fetchNews(query: viewModel.q, sortBy: newValue)
             }
         }
     }

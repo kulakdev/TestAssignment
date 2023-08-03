@@ -2,12 +2,11 @@ import SwiftUI
 
 struct SearchbarView: View{
     @State var currentMessage: String = "Enter the search parameter"
-    @Binding var q: String
-    @ObservedObject var viewModel : ArticleViewModel
+    @ObservedObject var viewModel : ArticleViewModel = ArticleViewModel()
     
     var body: some View{
         HStack {
-            TextField(currentMessage, text: $q)
+            TextField(currentMessage, text: $viewModel.q)
                 .padding(5)
                 .overlay(
                     RoundedRectangle(cornerRadius: 6)
@@ -15,8 +14,8 @@ struct SearchbarView: View{
                 )
                 .font(.title2)
             Button("Search"){
-                if !q.isEmpty {
-                    viewModel.fetchNews(query: q)
+                if !viewModel.q.isEmpty {
+                    viewModel.fetchNews(query: viewModel.q)
                 } else {
                     currentMessage = "ENTER THE SEARCH PARAMETER"
                 }

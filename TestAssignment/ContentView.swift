@@ -14,11 +14,10 @@ struct ContentView: View {
     var body: some View {
         NavigationStack{
             VStack {
-                SearchbarView(q: $viewModel.q, viewModel: viewModel)
+                SearchbarView()
                 HStack {
-                    IncludeExcludeView(q: $viewModel.q, sortMode: $viewModel.sortMode, viewModel: viewModel)
-                    
-                    ToolbarView(sortMode: $viewModel.sortMode, query: $viewModel.q, viewModel: viewModel)
+                    IncludeExcludeView()
+                    ToolbarView()
                 }
                 List(viewModel.articles, id: \.title) { item in
                     NavigationLink(destination: DetailView(item: item)) {

@@ -9,9 +9,7 @@ import SwiftUI
 
 struct IncludeExcludeView: View {
     @State var sheetVisibility = false
-    @Binding var q: String
-    @Binding var sortMode: String
-    @ObservedObject var viewModel: ArticleViewModel
+    @ObservedObject var viewModel: ArticleViewModel = ArticleViewModel()
     
     var body: some View{
         Button("Sorting options"){
@@ -25,7 +23,7 @@ struct IncludeExcludeView: View {
             HStack{
                 Spacer()
                 Button(){
-                    viewModel.fetchNews(query: q, sortBy: sortMode)
+                    viewModel.fetchNews(query: viewModel.q, sortBy: viewModel.sortMode)
                     sheetVisibility.toggle()
                 
                 } label: {
@@ -87,7 +85,7 @@ struct IncludeExcludeView: View {
 struct IncludeExcludeView_Preview: PreviewProvider {
     static var previews: some View {
         let viewModel = ArticleViewModel()
-        return IncludeExcludeView(q: .constant("Bazinga"), sortMode: .constant("publishedAt"), viewModel: viewModel)
+        return IncludeExcludeView()
             .padding()
     }
 }
