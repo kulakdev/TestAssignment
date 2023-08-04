@@ -19,6 +19,9 @@ class ArticleViewModel: ObservableObject {
     @Published var to: Date = Date()
     @Published var upperRange: Date = Date()
     
+    var ENV: APIKeyable {
+        return ProdENV()
+    }
     
 //    i'm sorry, i just need two instances because one can be mutated, and another not
     @Published var from: Date = {
@@ -38,14 +41,14 @@ class ArticleViewModel: ObservableObject {
         let components = calendar.dateComponents([.year, .month, .day], from: oneMonthAgo)
         return calendar.date(from: components) ?? Date()
     }()
-    
-    
+     
     
     func fetchNews(query: String, sortBy: String = "publishedAt"){
+        let apiKey: String = ENV.APIKEY
         let dateFormatter = ISO8601DateFormatter()
 
-            let formattedTo = dateFormatter.string(from: to)
-            let formattedFrom = dateFormatter.string(from: from)
+        let formattedTo = dateFormatter.string(from: to)
+        let formattedFrom = dateFormatter.string(from: from)
             
         
         var urlComponents = URLComponents()
@@ -54,7 +57,7 @@ class ArticleViewModel: ObservableObject {
             urlComponents.path = "/v2/everything"
             urlComponents.queryItems = [
                 URLQueryItem(name: "q", value: query + convertInclude(includes: includedTopics) + convertExclude(excludes: excludedTopics)),
-                URLQueryItem(name: "apiKey", value: "f1ec47c0a4a84ebe99aaf50d447f5c64"),
+                URLQueryItem(name: "apiKey", value: "\(apiKey)"),
                 URLQueryItem(name: "sortBy", value: "\(sortBy)"),
                 URLQueryItem(name: "to", value: "\(formattedTo)"),
                 URLQueryItem(name: "from", value: "\(formattedFrom)")
@@ -69,6 +72,7 @@ class ArticleViewModel: ObservableObject {
         
         var request = URLRequest(url: url)
         print(request)
+        
         request.addValue("f1ec47c0a4a84ebe99aaf50d447f5c64, 29150e61228f48e290e7dbadabc051f7", forHTTPHeaderField: "X-Auth-Token")
         request.httpMethod = "GET"
         

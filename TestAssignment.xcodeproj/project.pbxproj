@@ -10,6 +10,9 @@
 		AF45150C2A7A8F1100E1C65B /* convertIncludeExclude.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF45150B2A7A8F1100E1C65B /* convertIncludeExclude.swift */; };
 		AF60E6C32A7C39DF009EA243 /* SortingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF60E6C22A7C39DF009EA243 /* SortingView.swift */; };
 		AF60E6C52A7C3A6E009EA243 /* NewsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF60E6C42A7C3A6E009EA243 /* NewsListView.swift */; };
+		AF60E6C92A7C3EB1009EA243 /* propertyWrappers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF60E6C82A7C3EB1009EA243 /* propertyWrappers.swift */; };
+		AF60E6D32A7D3BFD009EA243 /* KeyLoaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF60E6D22A7D3BFD009EA243 /* KeyLoaderViewModel.swift */; };
+		AF60E6D52A7D3D9C009EA243 /* API-KEY.plist in Resources */ = {isa = PBXBuildFile; fileRef = AF60E6D42A7D3D9C009EA243 /* API-KEY.plist */; };
 		AFD09DC72A78DE7C00BBB2C7 /* TestAssignmentApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD09DC62A78DE7C00BBB2C7 /* TestAssignmentApp.swift */; };
 		AFD09DC92A78DE7C00BBB2C7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD09DC82A78DE7C00BBB2C7 /* ContentView.swift */; };
 		AFD09DCB2A78DE7D00BBB2C7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AFD09DCA2A78DE7D00BBB2C7 /* Assets.xcassets */; };
@@ -45,6 +48,9 @@
 		AF45150B2A7A8F1100E1C65B /* convertIncludeExclude.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = convertIncludeExclude.swift; sourceTree = "<group>"; };
 		AF60E6C22A7C39DF009EA243 /* SortingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingView.swift; sourceTree = "<group>"; };
 		AF60E6C42A7C3A6E009EA243 /* NewsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsListView.swift; sourceTree = "<group>"; };
+		AF60E6C82A7C3EB1009EA243 /* propertyWrappers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = propertyWrappers.swift; sourceTree = "<group>"; };
+		AF60E6D22A7D3BFD009EA243 /* KeyLoaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyLoaderViewModel.swift; sourceTree = "<group>"; };
+		AF60E6D42A7D3D9C009EA243 /* API-KEY.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "API-KEY.plist"; sourceTree = "<group>"; };
 		AFD09DC32A78DE7C00BBB2C7 /* TestAssignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestAssignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFD09DC62A78DE7C00BBB2C7 /* TestAssignmentApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAssignmentApp.swift; sourceTree = "<group>"; };
 		AFD09DC82A78DE7C00BBB2C7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -91,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				AFD09DF32A78EEE200BBB2C7 /* ArticleViewModel.swift */,
+				AF60E6D22A7D3BFD009EA243 /* KeyLoaderViewModel.swift */,
 				AF45150B2A7A8F1100E1C65B /* convertIncludeExclude.swift */,
 			);
 			path = ViewModel;
@@ -171,6 +178,8 @@
 			isa = PBXGroup;
 			children = (
 				AFD09DF12A78EE9700BBB2C7 /* ArticleModel.swift */,
+				AF60E6D42A7D3D9C009EA243 /* API-KEY.plist */,
+				AF60E6C82A7C3EB1009EA243 /* propertyWrappers.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -281,6 +290,7 @@
 			files = (
 				AFD09DCE2A78DE7D00BBB2C7 /* Preview Assets.xcassets in Resources */,
 				AFD09DCB2A78DE7D00BBB2C7 /* Assets.xcassets in Resources */,
+				AF60E6D52A7D3D9C009EA243 /* API-KEY.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,8 +315,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF60E6C92A7C3EB1009EA243 /* propertyWrappers.swift in Sources */,
 				AFD09DC92A78DE7C00BBB2C7 /* ContentView.swift in Sources */,
 				AF60E6C32A7C39DF009EA243 /* SortingView.swift in Sources */,
+				AF60E6D32A7D3BFD009EA243 /* KeyLoaderViewModel.swift in Sources */,
 				AFD09DF82A78FFE500BBB2C7 /* DetailView.swift in Sources */,
 				AFD09DF42A78EEE200BBB2C7 /* ArticleViewModel.swift in Sources */,
 				AFD7A2352A7A6DD00014A52C /* IncludeExcludeView.swift in Sources */,
