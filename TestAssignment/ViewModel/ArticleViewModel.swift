@@ -72,8 +72,7 @@ class ArticleViewModel: ObservableObject {
         
         var request = URLRequest(url: url)
         print(request)
-        
-        request.addValue("f1ec47c0a4a84ebe99aaf50d447f5c64, 29150e61228f48e290e7dbadabc051f7", forHTTPHeaderField: "X-Auth-Token")
+
         request.httpMethod = "GET"
         
         
